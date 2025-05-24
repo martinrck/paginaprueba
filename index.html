@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="formContainer">
+            <input id="inputComida" type="text" name="comida" placeholder="Comida" required>
+            <input id="inputPrecio" type="number" name="precio" placeholder="Precio">
+            <button id="btnAgregar">Agregar</button>
+            <button id="btnModificar">Modificar</button>
+            <button id="btnEliminar">Eliminar</button>
+        </div>
+
+
+        <div id="tableContainer">
+            <table id="tablaComidas">
+                <thead>
+                    <tr>
+                        <th>Nombre del Plato</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyComidas">
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>Este es el footer por el momento</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
