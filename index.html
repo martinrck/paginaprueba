@@ -11,40 +11,35 @@
         <nav class="navbar">
             <ul>
                 <li><a href="#menu">Menu</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
             </ul>
         </nav>
     </header>
-    
+
     <main>
-        <div id="formContainer">
-            <input id="inputComida" type="text" name="comida" placeholder="Comida" required>
-            <input id="inputPrecio" type="number" name="precio" placeholder="Precio">
-            <button id="btnAgregar">Agregar</button>
-            <button id="btnModificar">Modificar</button>
-            <button id="btnEliminar">Eliminar</button>
+        <div class="containerForm">
+            <h1>Formulario</h1>
+            <form class="formClientes">
+                <input id="inNombre" type="text" name="nombre" placeholder="Nombre" required>
+                <input type="number" name="edad" placeholder="Edad" required>
+                <button id="btnAgregar" type="submit">Agregar</button>
+            </form>
         </div>
 
-
-        <div id="tableContainer">
-            <table id="tablaComidas">
+        <div class="containerTable">
+            <table id="tablaClientes">
                 <thead>
                     <tr>
-                        <th>Nombre del Plato</th>
-                        <th>Precio</th>
+                        <th>Nombre</th>
+                        <th>Edad</th>
                     </tr>
                 </thead>
-                <tbody id="tbodyComidas">
-
-                </tbody>
             </table>
         </div>
     </main>
 
-    <footer>
-        <p>Este es el footer por el momento</p>
+    <footer id="mifooter">
+        <p>Mi proyecto 2025.</p>
     </footer>
-
     <script src="main.js"></script>
 </body>
 </html>
