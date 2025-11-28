@@ -1,47 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // =========================================
-    // 0. PRELOADER Y ANIMACIÓN DE ENTRADA
+    // 0. PRELOADER (CRÍTICO: Esto debe estar protegido)
     // =========================================
     const preloader = document.getElementById('preloader');
     const hiddenElements = document.querySelectorAll('.hidden-element');
 
-    // 1. Aseguramos que el scroll esté bloqueado al inicio
+    // Bloqueamos scroll al inicio
     document.body.classList.add('loading');
 
-    // 2. Temporizador para simular la carga (Sincronizado con la animación CSS de 2s)
     setTimeout(() => {
-        
-        // A. Desvanecer la pantalla negra
+        // A. Quitar pantalla negra (Verificamos que exista)
         if (preloader) {
             preloader.classList.add('fade-out');
         }
         
-        // B. Devolver el scroll al usuario
+        // B. Devolver scroll
         document.body.classList.remove('loading');
 
-        // C. Hacer entrar los elementos (Título, Bola, etc.)
-        // Esperamos 300ms para que el negro empiece a irse antes de que entren los textos
+        // C. Mostrar elementos
         setTimeout(() => {
             hiddenElements.forEach(el => {
                 el.classList.add('show-element');
             });
         }, 300);
 
-    }, 2200); // 2.2 segundos de espera
+    }, 2200);
 
 
     // =========================================
-    // 1. MENÚ MÓVIL
+    // 1. MENÚ MÓVIL (Aquí estaba tu error)
     // =========================================
-    const menuBtn = document.getElementById('mobile-menu-btn');
+    // Asegúrate de que el ID en el HTML sea 'mobile-menu-btn'
+    const menuBtn = document.getElementById('mobile-menu-btn'); 
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (menuBtn) {
+    // SOLUCIÓN: El 'if (menuBtn)' evita el error "Cannot read properties of null"
+    if (menuBtn && navMenu) {
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('is-active');
             navMenu.classList.toggle('active');
+            
             // Solo bloqueamos scroll si NO estamos en modo carga
             if (!document.body.classList.contains('loading')) {
                 document.body.classList.toggle('locked-scroll');
@@ -49,13 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cerrar menú al hacer click en un link
+    // Cerrar menú al hacer click en links
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            menuBtn.classList.remove('is-active');
-            navMenu.classList.remove('active');
-            if (!document.body.classList.contains('loading')) {
-                document.body.classList.remove('locked-scroll');
+            if (menuBtn && navMenu) {
+                menuBtn.classList.remove('is-active');
+                navMenu.classList.remove('active');
+                if (!document.body.classList.contains('loading')) {
+                    document.body.classList.remove('locked-scroll');
+                }
             }
         });
     });
@@ -65,13 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. NAVBAR SCROLL EFFECT
     // =========================================
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
 
 
     // =========================================
@@ -82,19 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextBtn');
     const indicatorsContainer = document.getElementById('indicators');
     
+    // Solo ejecutamos si existen slides
     if (slides.length > 0) {
         let currentSlide = 0;
         const totalSlides = slides.length;
         let slideInterval;
 
-        // Crear indicadores dinámicamente
-        slides.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
-            if(indicatorsContainer) indicatorsContainer.appendChild(dot);
-        });
+        // Crear indicadores dinámicamente si el contenedor existe
+        if (indicatorsContainer) {
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(dot);
+            });
+        }
 
         const dots = document.querySelectorAll('.dot');
 
@@ -131,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             slideInterval = setInterval(nextSlide, 5000); 
         }
 
-        // Listeners
+        // Listeners protegidos
         if(nextBtn) {
             nextBtn.addEventListener('click', () => {
                 nextSlide();
@@ -167,13 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const particle = document.createElement('div');
             particle.classList.add('particle');
             
-            // Posición aleatoria horizontal
             const x = Math.random() * 100;
-            // Retraso aleatorio
             const delay = Math.random() * 20;
-            // Duración aleatoria (velocidad)
             const duration = 15 + Math.random() * 20;
-            // Tamaño aleatorio
             const size = Math.random() * 3;
 
             particle.style.left = `${x}%`;
@@ -182,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
             particle.style.animationDelay = `${delay}s`;
             particle.style.animationDuration = `${duration}s`;
             
-            // Color ligeramente variado (blanco o azulado)
             if(Math.random() > 0.8) {
                 particle.style.background = '#3333ff';
                 particle.style.boxShadow = '0 0 5px #3333ff';
