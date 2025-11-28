@@ -1,24 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // =========================================
-    // 0. PRELOADER (CRÍTICO: Esto debe estar protegido)
+    // 0. PRELOADER (PANTALLA DE CARGA)
     // =========================================
     const preloader = document.getElementById('preloader');
     const hiddenElements = document.querySelectorAll('.hidden-element');
 
-    // Bloqueamos scroll al inicio
+    // 1. Bloqueamos scroll al inicio
     document.body.classList.add('loading');
 
+    // 2. Temporizador para quitar la pantalla de carga
     setTimeout(() => {
-        // A. Quitar pantalla negra (Verificamos que exista)
+        // A. Quitar pantalla negra (Verificamos que exista para evitar errores)
         if (preloader) {
             preloader.classList.add('fade-out');
         }
         
-        // B. Devolver scroll
+        // B. Devolver el scroll al usuario
         document.body.classList.remove('loading');
 
-        // C. Mostrar elementos
+        // C. Hacer entrar los elementos
         setTimeout(() => {
             hiddenElements.forEach(el => {
                 el.classList.add('show-element');
@@ -29,38 +30,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================
-    // 1. MENÚ MÓVIL (Aquí estaba tu error)
+    // 1. MENÚ MÓVIL (CORREGIDO Y SEGURO)
     // =========================================
-    // Asegúrate de que el ID en el HTML sea 'mobile-menu-btn'
-    const menuBtn = document.getElementById('mobile-menu-btn'); 
+    const menuBtn = document.getElementById('mobile-menu-btn'); // Debe coincidir con el HTML
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // SOLUCIÓN: El 'if (menuBtn)' evita el error "Cannot read properties of null"
+    // SOLUCIÓN AL ERROR: Verificamos si existe el botón antes de usarlo.
     if (menuBtn && navMenu) {
+        
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('is-active');
             navMenu.classList.toggle('active');
             
-            // Solo bloqueamos scroll si NO estamos en modo carga
+            // Solo bloqueamos scroll si NO estamos cargando la página
             if (!document.body.classList.contains('loading')) {
                 document.body.classList.toggle('locked-scroll');
             }
         });
-    }
 
-    // Cerrar menú al hacer click en links
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (menuBtn && navMenu) {
+        // Cerrar menú al hacer click en un link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
                 menuBtn.classList.remove('is-active');
                 navMenu.classList.remove('active');
                 if (!document.body.classList.contains('loading')) {
                     document.body.classList.remove('locked-scroll');
                 }
-            }
+            });
         });
-    });
+
+    } else {
+        // Si no encuentra el menú, no hace nada y NO rompe el resto del sitio
+        console.log("Menú móvil no activo en esta resolución o ID incorrecto.");
+    }
 
 
     // =========================================
@@ -86,13 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextBtn');
     const indicatorsContainer = document.getElementById('indicators');
     
-    // Solo ejecutamos si existen slides
+    // Verificamos si hay slides para evitar errores
     if (slides.length > 0) {
         let currentSlide = 0;
         const totalSlides = slides.length;
         let slideInterval;
 
-        // Crear indicadores dinámicamente si el contenedor existe
+        // Crear indicadores
         if (indicatorsContainer) {
             slides.forEach((_, index) => {
                 const dot = document.createElement('span');
@@ -138,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             slideInterval = setInterval(nextSlide, 5000); 
         }
 
-        // Listeners protegidos
+        // Listeners seguros
         if(nextBtn) {
             nextBtn.addEventListener('click', () => {
                 nextSlide();
