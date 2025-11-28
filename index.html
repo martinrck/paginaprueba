@@ -3,49 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discotick</title>
+    <title>Discotick | La Noche Retro</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
 </head>
 <body> 
-    
+
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="logo preloader-logo">
+                Disco<span class="script-accent">tick</span>
+            </div>
+            <div class="loading-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="ambient-bg"></div>
     <div class="retro-grid"></div> 
-    <div class="particles"></div>  
+    <div id="particles-container"></div> 
 
-    <header>
+    <header id="navbar" class="hidden-element">
         <a href="#" class="logo">
             Disco<span class="script-accent">tick</span>
         </a>
         
-        <div class="menu-toggle" id="mobile-menu">
+        <div class="menu-toggle" id="mobile-menu-btn">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
 
-        <nav class="nav-menu">
-            <a href="#quienes-somos" class="nav-link">Quienes somos</a>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="#quienes-somos" class="nav-link">Nosotros</a>
             <a href="#musica" class="nav-link">Música</a>
-            <a href="https://www.passline.com" target="_blank" rel="noopener noreferrer" class="btn-nav nav-link">Reserva tu entrada</a>
+            <a href="#experiencia" class="nav-link">Experiencia</a>
+            <a href="https://www.passline.com" target="_blank" rel="noopener noreferrer" class="btn-nav">Reserva tu Entrada</a>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <p class="tagline">EST. 1985</p>
-                <h1>LA NOCHE <br> <span class="gradient-text">MAS RETRO DE BUENOS AIRES</span></h1>
-                <p class="description">
-                    Tu rincón soñado donde podrás escuchar los mejores clásicos.
-                    Pop, Rock y la mejor coctelería.
+                <p class="tagline hidden-element delay-1">EST. 1985</p>
+                <h1 class="hidden-element delay-2">LA NOCHE <br> <span class="gradient-text">MAS RETRO DE BUENOS AIRES</span></h1>
+                <p class="description hidden-element delay-3">
+                    Tu refugio de neón donde los clásicos nunca mueren. 
+                    Pop, Rock, tragos de autor y la mística de los 80s.
                 </p>
-                <a href="#main-content" id="btn-ver-mas" class="cta-button">VER MÁS <span>↓</span></a>
+                <a href="#experiencia" class="cta-button hidden-element delay-4">DESCUBRIR <span>↓</span></a>
             </div>
 
-            <div class="hero-visual">
+            <div class="hero-visual hidden-element delay-5">
                 <div class="disco-ball-container">
                     <div class="disco-ball"></div>
                     <div class="glow-effect"></div>
@@ -56,19 +68,19 @@
 
     <div id="main-content" class="content-wrapper">
         
-        <section class="carousel-section">
+        <section id="experiencia" class="carousel-section">
             <div class="section-title-wrapper">
-                <h2 class="section-title">LO QUE VAS A ENCONTRAR</h2>
+                <h2 class="section-title">LA EXPERIENCIA</h2>
             </div>
             
             <div class="carousel-container">
-                <div class="carousel-track">
+                <div class="carousel-track" id="track">
                     
                     <div class="slide active">
                         <img src="img/aletick.png" alt="Pista de baile"> 
                         <div class="slide-content">
                             <h3>LA PISTA</h3>
-                            <p>Luces de neón y el sonido de Depeche Mode, Phil Collins, Michael Jackson y mucho más.</p>
+                            <p>Luces de neón y el sonido de Depeche Mode, Madonna y Michael Jackson.</p>
                         </div>
                         <div class="crt-overlay"></div>
                     </div>
@@ -77,7 +89,7 @@
                         <img src="img/image.png" alt="Vinilos DJ"> 
                         <div class="slide-content">
                             <h3>NOCHES TEMATICAS</h3>
-                            <p>En Discotick vas a disfrutar Halloween, Noche de Piratas, Miami Vice y muchas otras temáticas clásicas.</p>
+                            <p>Halloween, Noche de Piratas, Miami Vice y más.</p>
                         </div>
                         <div class="crt-overlay"></div>
                     </div>
@@ -85,22 +97,18 @@
                     <div class="slide">
                         <img src="img/bamboofaxe.png" alt="Tragos Neon"> 
                         <div class="slide-content">
-                            <h3>LA BARRA</h3>
-                            <p>Tragos de autor con la mística de los 80s tales como Blue Lagoon, Tequila Sunrise y Whisky importado.</p>
+                            <h3>COCTELERÍA</h3>
+                            <p>Blue Lagoon, Tequila Sunrise y Whisky importado.</p>
                         </div>
                         <div class="crt-overlay"></div>
                     </div>
 
                 </div>
 
-                <button class="carousel-btn prev">❮</button>
-                <button class="carousel-btn next">❯</button>
+                <button class="carousel-btn prev" id="prevBtn">❮</button>
+                <button class="carousel-btn next" id="nextBtn">❯</button>
                 
-                <div class="indicators">
-                    <span class="dot active" data-slide="0"></span>
-                    <span class="dot" data-slide="1"></span>
-                    <span class="dot" data-slide="2"></span>
-                </div>
+                <div class="indicators" id="indicators"></div>
             </div>
         </section>
 
@@ -110,9 +118,6 @@
                     <h2 class="about-title">EL ESPÍRITU DISCOTICK</h2>
                     <p>
                         Somos más que un club nocturno; somos una <strong>máquina del tiempo</strong>. Nacimos de la nostalgia por una época donde la música se sentía en el pecho y la moda no tenía límites.
-                    </p>
-                    <p>
-                        <strong>Nuestra ideología es simple:</strong> acá venís a ser vos mismo. Sin etiquetas, sin códigos de vestimenta aburridos. Creemos en la buena vibra, en el respeto y en bailar hasta que salga el sol al ritmo de los sintetizadores.
                     </p>
                     <p class="highlight-text">
                         "Donde los recuerdos cobran vida y la fiesta nunca termina."
@@ -130,20 +135,20 @@
         </section>
 
         <section class="info-grid">
-            <div class="glass-card">
+            <div class="glass-card hover-effect">
                 <div class="icon">🎵</div>
-                <h2>Sonido Hi-Fi</h2>
-                <p>Sistemas de audio de alta fidelidad para revivir los hits que querés escuchar.</p>
+                <h2>Alta calidad de sonido</h2>
+                <p>Sistemas de audio calibrados para sentir cada bajo del Synthpop.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card hover-effect">
                 <div class="icon">🍸</div>
-                <h2>Bar Premium</h2>
-                <p>Tragos clásicos: Blue Lagoon, Tequila Sunrise y nuestra selección de Whisky importado.</p>
+                <h2>Barra Premium</h2>
+                <p>La mejor selección de bebidas internacionales y tragos clásicos.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card hover-effect">
                 <div class="icon">✨</div>
-                <h2>Código de Vestimenta</h2>
-                <p>¡Vení cómodo! La buena onda es nuestra única regla estricta.</p>
+                <h2>Codigo de Vestimenta</h2>
+                <p>Vení cómodo. Tu estilo y tu buena onda son lo único que importa.</p>
             </div>
         </section>
 
@@ -155,12 +160,10 @@
             <div class="music-grid">
                 <div class="music-card pink-glow">
                     <div class="cassette-top"></div>
-                    <h3>SYNTH & NEW WAVE</h3>
+                    <h3>SYNTH WAVE</h3>
                     <ul class="artist-list">
                         <li>Depeche Mode</li>
                         <li>Erasure</li>
-                        <li>A-ha</li>
-                        <li>Pet Shop Boys</li>
                         <li>New Order</li>
                     </ul>
                 </div>
@@ -172,8 +175,6 @@
                         <li>Michael Jackson</li>
                         <li>Madonna</li>
                         <li>Prince</li>
-                        <li>Cyndi Lauper</li>
-                        <li>Wham!</li>
                     </ul>
                 </div>
 
@@ -183,8 +184,6 @@
                     <ul class="artist-list">
                         <li>Queen</li>
                         <li>Bon Jovi</li>
-                        <li>Guns N' Roses</li>
-                        <li>Earth, Wind & Fire</li>
                         <li>Bee Gees</li>
                     </ul>
                 </div>
@@ -195,25 +194,23 @@
             <div class="footer-content">
                 <div class="logo-small">Disco<span class="script-accent">tick</span></div>
                 <p>Juan B. Justo 1659, Palermo, Buenos Aires.</p>
+                <p style="font-size: 0.7rem; color: #444; margin-top: 10px;">© 2024 Discotick. Todos los derechos reservados.</p>
             </div>
         </footer>
     </div>
 
     <div class="social-float-container">
-        
-        <a href="https://www.instagram.com/discotickoficial/" class="social-btn instagram-btn" target="_blank" title="Seguinos en Instagram">
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+        <a href="https://www.instagram.com/" class="social-btn instagram-btn" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
         </a>
-
-        <a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO_AQUI" class="social-btn whatsapp-btn" target="_blank" title="Unite al Grupo VIP">
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+        <a href="#" class="social-btn whatsapp-btn" target="_blank" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.698c1.005.549 1.992.89 3.03.89 3.182 0 5.77-2.587 5.77-5.77 0-3.185-2.587-5.767-5.768-5.767zm0-2c4.295 0 7.77 3.474 7.77 7.77 0 4.296-3.475 7.77-7.77 7.77-1.353 0-2.673-.393-3.665-1.07l-4.365 1.15 1.164-4.25c-.838-1.12-1.341-2.505-1.341-3.996 0-4.296 3.475-7.77 7.77-7.77z" fill="currentColor"/>
                 <path d="M17.276 14.507c-.22-.11-1.306-.645-1.508-.718-.202-.074-.35-.11-.497.11-.148.22-.572.718-.702.865-.129.147-.258.165-.478.055-.22-.11-.93-.343-1.77-1.092-.656-.586-1.1-1.31-1.229-1.53-.129-.22-.014-.34.096-.45.1-.1.22-.257.331-.385.11-.129.147-.22.22-.367.074-.147.037-.275-.018-.385-.055-.11-.497-1.197-.681-1.639-.18-.432-.362-.374-.497-.38-.13-.006-.277-.006-.425-.006-.147 0-.387.055-.59.275-.202.22-.773.755-.773 1.842 0 1.087.792 2.138.902 2.285.11.147 1.56 2.38 3.778 3.338.528.228.94.364 1.264.467.533.169 1.018.145 1.403.088.43-.064 1.306-.534 1.49-1.049.184-.515.184-.956.129-1.049-.055-.092-.202-.147-.422-.257z" fill="currentColor"/>
             </svg>
         </a>
-
     </div>
 
     <script src="script.js"></script>
